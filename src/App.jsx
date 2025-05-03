@@ -1,11 +1,16 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home"; // Importa tu componente Home
+import Login from "./Pages/Login"; // Importa tu componente Login
 
-function App() {
-
+const App = () => {
   return (
-    <>
-      <h1>VALORY4</h1>
-    </>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
