@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { usePrivy } from "@privy-io/react-auth";
+
 
 
 const Home = () => {
+    const { user, login, logout } = usePrivy();
+
     const navigate = useNavigate();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Estado para controlar el menú desplegable
 
@@ -15,11 +20,11 @@ const Home = () => {
             {/* Barra superior */}
             <header className="flex items-center justify-between bg-white px-6 py-4 rounded-xl shadow-md mb-10">
                 <h1 className="text-xl font-bold text-blue-700">VALORY4 CONTRACT SHOP</h1>
-                <div className="flex items-center space-x-4">
-                    <div className="relative">
+                <div className="flex items-center space-x-10">
+                    <div className="flex justify-between relative  p-4">
                         {/* Botón de Historial */}
                         <button
-                            className="text-gray-700 font-medium"
+                            className="p-4 rounded-2xl text-gray-700 font-medium hover:bg-[#ffebe3] transition-all ease-in-out duration-300 mt-4"
                             onClick={toggleDropdown} // Cambiar el estado al hacer clic
                         >
                             Historial ▼
@@ -30,6 +35,7 @@ const Home = () => {
                                 <ul className="text-gray-700">
                                     <Link to="/Finanzas">
                                         <li className="px-4 py-2 hover:bg-gray-100">
+
                                             Finanzas
                                         </li></Link>
                                     <Link to="/RH">
@@ -56,8 +62,25 @@ const Home = () => {
                             </div>
                         )}
                     </div>
-                    <div className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-mono">0x5d05...e515</div>
-                    <button onClick={() => navigate("/")} className="text-red-500 font-semibold">Desconectar</button>
+                    <div>
+                        <button onClick={login} className="text-blue-500 font-semibold">
+                            {user ? "Conectado:" : "Conectar Wallet"}
+                        </button>
+
+                        {/* Mostrar la dirección de la wallet si está conectada */}
+                        <div className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-mono mt-4">
+                            {user?.wallet?.address ? `Wallet: ${user.wallet.address}` : "No conectado"}
+                        </div>
+
+                        {/* Botón para cerrar sesión y cambiar de wallet */}
+                        {user && (
+                            <button onClick={logout} className="bg-white-500 text-black px-4 py-2 rounded-md hover:bg-gray-400 transition-all ease-in-out duration-300 mt-4">
+                                Cerrar sesión / Cambiar Wallet
+                            </button>
+                        )}
+
+                    </div>
+
                 </div>
             </header>
 

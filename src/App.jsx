@@ -10,17 +10,20 @@ import { PrivyProvider } from "@privy-io/react-auth";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/Finanzas" element={<Finanzas />} />
-        <Route path="/RH" element={<RH />} />
-        <Route path="/Marketing" element={<Marketing />} />
-        <Route path="/Sistemas" element={<Sistemas />} />
-        <Route path="/Ventas" element={<Ventas />} />
-      </Routes>
-    </BrowserRouter>
+    <PrivyProvider appId="cma8f7lvz01rhky0lh8dbqa92">
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/Finanzas" element={<Finanzas />} />
+                    <Route path="/RH" element={<RH />} />
+                    <Route path="/Marketing" element={<Marketing />} />
+                    <Route path="/Sistemas" element={<Sistemas />} />
+                    <Route path="/Ventas" element={<Ventas />} />
+                </Routes>
+            </BrowserRouter>
+        </PrivyProvider>
+
   );
 };
 
