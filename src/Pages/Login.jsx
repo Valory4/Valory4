@@ -3,6 +3,19 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const handleLogin = (e) => {
+        e.preventDefault(); // Evita el refresh de la página
+
+        if (email === "admin@example.com" && password === "123456") {
+            window.location.href = "/home"; // ✅ Redirige si es válido
+        } else {
+            alert("Usuario o contraseña incorrectos"); // ❌ Muestra alerta si falla
+        }
+
+    };
+
 
     return (
         <div className="flex justify-center items-center h-screen bg-gradient-to-r from-[#1e2b3e] to-[#3a5275]">
@@ -29,6 +42,8 @@ const Login = () => {
                                 type="email"
                                 className="w-full focus:outline-none"
                                 placeholder="tucorreo@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                     </div>
@@ -43,6 +58,8 @@ const Login = () => {
                                 type={showPassword ? "text" : "password"}
                                 className="w-full focus:outline-none"
                                 placeholder="••••••••"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <button
                                 type="button"
@@ -64,10 +81,16 @@ const Login = () => {
                         </Link>
                     </div>
 
+
                     <div className="flex justify-center items-center">
-                        <Link to="/home" className="bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 p-4 w-full text-center">
+
+
+                        <button
+                            onClick={handleLogin}
+                            className="bg-indigo-500 text-white py-2 rounded-lg hover:bg-indigo-600 p-4 w-full text-center"
+                        >
                             L O G I N
-                        </Link>
+                        </button>
                     </div>
                 </form>
             </div>

@@ -6,6 +6,7 @@ import RH from "./Pages/Areas/RH"; // Importa tu componente RH
 import Marketing from "./Pages/Areas/Marketing"; // Importa tu componente Marketing 
 import Sistemas from "./Pages/Areas/Sistemas"; // Importa tu componente Sistemas
 import Ventas from "./Pages/Areas/Ventas";
+import { PrivyProvider } from "@privy-io/react-auth";
 
 const App = () => {
   return (
